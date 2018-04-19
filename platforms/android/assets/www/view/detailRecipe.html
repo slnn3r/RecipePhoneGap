@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html ng-app='detailRecipePage'>
+
+<head>
+
+
+    <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">
+
+    <script src="../js/Angular/angular.min.js"></script>
+
+    <script src="../js/jquery-3.3.1.slim.js"> </script>
+
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+
+    <script src="../control/detailRecipe.js"></script>
+
+
+
+    <title>View Recipe Page</title>
+</head>
+
+
+<body onload="myFunction()" ng-controller="detailController">
+
+  <div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <h5 class="text-white h4" align="center">(Recipe Apps)</h5>
+
+        <h5 class="text-white h4" align="center">Welcome, <span id="myText"></span></h5>
+
+        <br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="window.location.href='viewRecipe.html';" >View Recipe</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="window.location.href='createRecipe.html';" >Create Recipe</button>
+        <button type="button" class="btn btn-warning btn-lg btn-block" onclick="logOut()">Log Out</button>
+        <button type="button" class="btn btn-danger btn-lg btn-block" onclick="exitFromApp()">Exit (X)</button>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+
+
+        <span class="navbar-toggler-icon"></span>
+        <span class="text-muted">Recipe Details</span>
+
+      </button>
+
+      <button ng-disabled="isDisabled" type="button" class="btn btn-info" onclick="back()">Back</button>
+
+    </nav>
+
+  </div>
+
+  <br>
+
+  <div class="container" >
+
+    <form name="updateRecipeForm" align="center" novalidate>
+
+      <div class="form-group">
+        <label for="recipeName" class="text-dark"><b>Recipe Name:</b></label>
+        <input ng-disabled="isDisabled" ng-model="recipeName" placeholder="eg. Boiled Water" type="text" class="form-control" id="recipeName" name="recipeName" ng-pattern="/^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$/" required style="text-align: center">
+
+        <div ng-show="!updateRecipeForm.recipeName.$pristine" >
+        <span ng-show="updateRecipeForm.recipeName.$error.required" style="color:red">Please enter Recipe Name.</span>
+        <span ng-show="updateRecipeForm.recipeName.$error.pattern" style="color:red">Invalid Recipe Name.</span>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="recipeType" class="text-dark"><b>Type:</b></label>
+        <select ng-disabled="isDisabled" class="custom-select" name="mySelect" id="mySelect"
+         ng-options="option.name for option in data.availableOptions track by option.name"
+         ng-model="data.selectedOption" style="text-align-last: center"></select>
+       </div>
+
+       <div class="form-group">
+         <label for="recipeIngredient" class="text-dark"><b>Ingredient:</b></label>
+         <input ng-disabled="isDisabled" ng-model="recipeIngredient" placeholder="eg. Water" type="text" class="form-control" id="recipeIngredient" name="recipeIngredient" required style="text-align: center">
+
+         <div ng-show="!updateRecipeForm.recipeIngredient.$pristine" >
+         <span ng-show="updateRecipeForm.recipeIngredient.$error.required" style="color:red">Please enter Ingredient.</span>
+         </div>
+
+       </div>
+
+      <div class="form-group">
+        <label for="recipeStep" class="text-dark"><b>Step:</b></label>
+        <textarea ng-disabled="isDisabled" ng-model="recipeStep" placeholder="eg. 1) Pour water in a Kettle and boil it." type="text" class="form-control" id="recipeStep" name="recipeStep" required style="text-align: center" rows="4" ></textarea>
+
+        <div ng-show="!updateRecipeForm.recipeStep.$pristine" >
+        <span ng-show="updateRecipeForm.recipeStep.$error.required" style="color:red">Please enter Step.</span>
+        </div>
+
+      </div>
+
+       <p>Notice: Please make sure all field are Filled In. If Button is unclickable, certain field is Empty.</p>
+
+      <button type="submit" class="btn btn-primary" ng-click="updateSubmit()" ng-disabled="updateRecipeForm.$invalid || isDisabled">Update Details</button>
+
+      <button ng-disabled="isDisabled" type="submit" class="btn btn-warning" ng-click="resetSubmit()">Reset</button>
+
+      <button ng-disabled="isDisabled" type="submit" class="btn btn-danger" ng-click="deleteSubmit()">Delete</button>
+
+
+    </form>
+
+
+  </div>
+
+
+
+
+  <script type="text/javascript" src="../cordova.js"></script>
+  <script type="text/javascript">
+      app.initialize();
+  </script>
+
+</body>
+
+
+</html>
