@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html ng-app='viewRecipePage'>
+
+<head>
+
+
+    <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">
+
+    <script src="../js/Angular/angular.min.js"></script>
+
+    <script src="../js/jquery-3.3.1.slim.js"> </script>
+
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+
+    <script src="../control/viewRecipe.js"></script>
+    <script src="../control/detailRecipe.js"></script>
+
+
+    <title>View Recipe Page</title>
+</head>
+
+
+<body onload="myFunction()">
+
+  <div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <h5 class="text-white h4" align="center">(Recipe Apps)</h5>
+
+        <h5 class="text-white h4" align="center">Welcome, <span id="myText"></span></h5>
+
+        <br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="window.location.href='viewRecipe.html';" >View Recipe</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="window.location.href='createRecipe.html';" >Create Recipe</button>
+        <button type="button" class="btn btn-warning btn-lg btn-block" onclick="logOut()">Log Out</button>
+        <button type="button" class="btn btn-danger btn-lg btn-block" onclick="exitFromApp()">Exit (X)</button>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+
+        <span class="navbar-toggler-icon"></span>
+        <span class="text-muted">View Recipe</span>
+
+      </button>
+    </nav>
+
+  </div>
+
+  <br>
+
+  <div class="container" ng-controller="viewController">
+
+
+    <select ng-disabled="isDisabled" class="custom-select" name="mySelect" id="mySelect"
+     ng-options="option.name for option in data.availableOptions track by option.name"
+     ng-model="data.selectedOption" ng-change="change()" style="text-align-last: center"></select>
+
+  <div>
+
+
+<div>
+<p align="center" style="background-color:powderblue;"><b><span id="noInt"></b></span></p>
+</div>
+
+
+   <div class="list-group" ng-init="change()">
+      <button ng-click="viewDetails(foo)" ng-disabled="isDisabled"
+        class="list-group-item text-primary" ng-repeat="foo in testing | filter:{RecipeName: ''}">
+        {{foo.RecipeName}}</button>
+
+      <button disabled class="list-group-item text-muted" ng-repeat="foo in testing" ng-if="foo.RecipeName==null">No Search Found</button>
+    </div>
+
+
+
+  <script type="text/javascript" src="../cordova.js"></script>
+  <script type="text/javascript">
+      app.initialize();
+
+  </script>
+
+</body>
+
+
+</html>

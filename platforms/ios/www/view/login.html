@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html ng-app='loginPage'>
+
+<head>
+
+  <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">
+
+    <script src="../js/Angular/angular.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../control/login.js"></script>
+
+    <title>Login Page</title>
+</head>
+
+
+<body class="container">
+
+  <form name="loginForm" align="center" ng-controller="loginController" novalidate>
+    <h2 class="text-dark">Recipe Apps Login</h2>
+
+    <br>
+    <button type="button" class="btn btn-info" ng-disabled="isDisabled" onclick="window.location.href='../index.html'">Back to Home Page</button>
+
+    <br><br>
+
+    <img src="../img/logo.png" srcset="../img/logo.png 1000w, ../img/logo.png 2000w">
+
+    <br><br><br><br>
+
+    <div class="form-group">
+      <label for="userEmail" class="text-dark"><b>Email:</b></label>
+      <input ng-disabled="isDisabled" ng-model="email" type="email" class="form-control" id="userEmail" name="userEmail" required style="text-align: center">
+
+      <div ng-show="!loginForm.userEmail.$pristine" >
+      <span ng-show="loginForm.userEmail.$error.required" style="color:red">Please enter your email.</span>
+      <span ng-show="loginForm.userEmail.$error.email" style="color:red">This is not a valid email.</span>
+      </div>
+
+
+    </div>
+
+    <div class="form-group">
+      <label for="userPassword" class="text-dark"><b>Password:</b></label>
+      <input ng-disabled="isDisabled" ng-model="password" type="password" class="form-control" id="userPassword" name="userPassword" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/" required style="text-align: center">
+
+      <div ng-show="!loginForm.userPassword.$pristine" >
+      <span ng-show="loginForm.userPassword.$error.required" style="color:red">Please enter your password.</span>
+      <span ng-show="loginForm.userPassword.$error.pattern" style="color:red">Password must be minimum eight characters, at least one letter and one number, do not contain any symbol value</span>
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="loginSubmit()" ng-disabled="loginForm.$invalid || isDisabled" >Login</button>
+
+    <button type="button" class="btn btn-warning btn-lg btn-block" ng-disabled="isDisabled" onclick="window.location.href='forgetPassword.html'">Forget Password</button>
+
+
+
+  </form>
+
+
+
+
+
+  <script type="text/javascript" src="../cordova.js"></script>
+  <script type="text/javascript">
+      app.initialize();
+  </script>
+
+</body>
+
+
+
+
+
+</html>
