@@ -1,1 +1,3 @@
-<h1>In Short, Recipe Apps with Bootstrap+AngularJS+PhoneGap</h1>
+# Recipe Apps in PhoneGap
+
+a demo Recipe Apps with using Bootstrap, AngularJS and PhoneGap Framework.
